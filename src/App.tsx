@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import AuthContainer from './auth/authContainer';
 import TodoPage from './pages/todoPage';
 import React from 'react';
+import TodoItemPage from './pages/todoItemPage';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Route path='/'  element={<AuthContainer/>} />
       <Route path='/login' element={<AuthContainer/>} />
       <Route path='/todoPage' element={<TodoPage/>} />
+      <Route path='/todoPage/:id' element={<TodoItemPage/>} />
     </Routes>
    </BrowserRouter>
   );
