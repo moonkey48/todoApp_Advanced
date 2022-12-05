@@ -1,6 +1,9 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
-import TodoList from '../components/todoList';
+import AddTodoContainer from '../container/addTodoContainer';
+import TodoListContainer from '../container/todoListContainer';
+import { Todo } from '../types/todo';
 
 const TodoPage = () => {
     const navigate = useNavigate();
@@ -8,11 +11,13 @@ const TodoPage = () => {
         navigate('/');
         localStorage.removeItem('token');
     }
+    
     return (
         <>
-        <TodoList
+        <TodoListContainer
         handleLogout={onLogout}
         />
+        <AddTodoContainer/>
         </>
     )
 }
