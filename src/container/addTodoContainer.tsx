@@ -1,8 +1,13 @@
 import axios from 'axios';
-import React from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 import AddTodo from '../components/addTodo';
+import { Todo } from '../types/todo';
 
-const AddTodoContainer = () => {
+type AddTodoContainerType = {
+    todos:Todo[]
+    setTodos:Dispatch<SetStateAction<Todo[]>>
+}
+const AddTodoContainer = ({todos, setTodos}:AddTodoContainerType) => {
     const addTodo = (title:string, content:string) =>{
         axios.post('http://localhost:8080/todos',{
             title,
@@ -12,10 +17,14 @@ const AddTodoContainer = () => {
                 Authorization: localStorage.getItem('token')
             }
         })
-        .then(res=>console.log(res.data))
+        .then(res=>{
+            if(res.data){
+                setTodos([...todos, res.data.data]);
+            }
+        })
         .catch(e=>console.log('error on add Todo'))
     }
-    return <AddTodo/>
+    return <AddTodo addTodo={addTodo}/>
 }
 
 export default AddTodoContainer;

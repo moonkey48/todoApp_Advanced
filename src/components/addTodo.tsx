@@ -1,13 +1,18 @@
 import React, { FormEvent, useState } from 'react';
 
-const AddTodo = () => {
+type AddTodoProps = {
+    addTodo:(title:string, content:string)=>void;
+}
+const AddTodo = ({addTodo}:AddTodoProps) => {
     const [title,setTitle] = useState('');
     const [content, setContent] = useState('')
     const handleSubmit = (e:FormEvent) =>{
         e.preventDefault();
-        console.log([title,content]);
-        setTitle('')
-        setContent('')
+        if(title!=='' && content !== ''){
+            addTodo(title, content);
+            setTitle('')
+            setContent('')
+        }
     }
     return (
         <form onSubmit={handleSubmit}>

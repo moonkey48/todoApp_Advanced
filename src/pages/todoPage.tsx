@@ -7,6 +7,7 @@ import { Todo } from '../types/todo';
 
 const TodoPage = () => {
     const navigate = useNavigate();
+    const [todos, setTodos] = useState<Todo[]>([]);
     const onLogout = () =>{
         navigate('/');
         localStorage.removeItem('token');
@@ -15,9 +16,14 @@ const TodoPage = () => {
     return (
         <>
         <TodoListContainer
+        todos={todos}
+        setTodos={setTodos}
         handleLogout={onLogout}
         />
-        <AddTodoContainer/>
+        <AddTodoContainer
+        todos={todos}
+        setTodos={setTodos}
+        />
         </>
     )
 }

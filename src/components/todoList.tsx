@@ -1,18 +1,26 @@
 import React from 'react';
+import { Todo } from '../types/todo';
 
 type TodoListProps = {
+    todos:Todo[];
     handleLogout: ()=>void;
 }
-const TodoList = ({handleLogout}:TodoListProps) => {
+const TodoList = ({todos, handleLogout}:TodoListProps) => {
     return (
         <section>
             <button onClick={handleLogout}>logout</button>
             <ul>
-            <li>todo 1</li>
-            <li>todo 2</li>
-            <li>todo 3</li>
-            <li>todo 4</li>
-        </ul>
+            {todos.length > 0 ? 
+            todos.map((todo:Todo)=>{
+                return <li key={todo.id}>
+                    <h1>{todo.title}</h1>
+                    <h2>{todo.content}</h2>
+                </li>
+            })
+            :
+            <li>아직 추가된 항목이 없습니다.</li>
+            }
+            </ul>
         </section>
     )
 }
