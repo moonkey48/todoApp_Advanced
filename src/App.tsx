@@ -2,6 +2,7 @@ import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import AuthContainer from './auth/authContainer';
 import TodoPage from './pages/todoPage';
+import React from 'react';
 
 function App() {
   return (
